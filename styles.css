@@ -376,20 +376,6 @@ input:focus, select:focus, textarea:focus{border-color: rgba(225,6,0,.55)}
 
 @media (max-width: 920px){
   .hero-grid{grid-template-columns: 1fr; }
-  .media-frame{
-  height:100%;
-  min-height:340px;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.55)),
-    radial-gradient(900px 520px at 30% 20%, rgba(225,6,0,.18), transparent 60%),
-    radial-gradient(900px 520px at 80% 20%, rgba(255,176,32,.14), transparent 60%),
-    #1a1a1a;
-  background-size: cover;
-  background-position:center;
-  display:flex;
-  align-items:flex-end;
-  padding:18px;
-}
   .grid3{grid-template-columns: 1fr}
   .split{grid-template-columns: 1fr}
   .gallery{grid-template-columns: repeat(6, 1fr)}
@@ -471,15 +457,4 @@ input:focus, select:focus, textarea:focus{border-color: rgba(225,6,0,.55)}
 .einsatz-grid .tile{
   grid-column: auto !important;
   width: auto !important;
-}
-/* ===== Abteilungs-Header ===== */
-.media-frame.weil   { --hero-image: url("assets/weil.jpeg");
-}
-.media-frame.hausen { --hero-image: url("assets/IMG_7873.jpeg");
-}
-.media-frame.merk   { --hero-image: url("assets/header-merklingen.jpeg");
-}
-.media-frame.muenk  { --hero-image: url("assets/header-muenklingen.jpeg");
-}
-.media-frame.schaf  { --hero-image: url("assets/header-schafhausen.jpeg");
 }
