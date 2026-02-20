@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <title>Impressum & Service · Feuerwehr Weil der Stadt (Entwurf)</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07090c" />
+  <meta name="description" content="Service-Seiten nach Ditzingen-Vorbild." />
+  <link rel="icon" href="assets/Stauferlöwe.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Feuerwehr Weil der Stadt Startseite">
+      <img src="assets/Stauferlöwe.jpg" alt="Feuerwehr Weil der Stadt Logo" class="brand-logo" />
+      <span class="brand-name">FREIWILLIGE FEUERWEHR WEIL DER STADT</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" data-nav>
+      <a href="organisation.html">Organisation</a>
+      <a href="einsaetze.html">Einsätze</a>
+      <a href="fahrzeuge.html">Fahrzeuge</a>
+      <a href="information.html">Information</a>
+      <a href="intern.html">Intern</a>
+      <a href="mitmachen.html" class="pill">Mitmachen</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="card hero-card">
+        <div class="kicker">Information · Impressum & Service</div>
+        <h1 class="h1">Service-Links<br/>an einem Ort.</h1>
+        <p class="lead">Service-Navigation (Kontakt, Suche, Barrierefreiheit, Rechtliches).</p>
+        <div class="cta-row">
+          <a class="btn primary" href="kontakt.html">Kontakt</a>
+          <a class="btn" href="datenschutz.html">Datenschutz</a>
+          <a class="btn" href="impressum.html">Impressum</a>
+        </div>
+      </div>
+
+      <div class="card media-card">
+        <div class="media-frame" role="img" aria-label="Header Bild Platzhalter">
+          <div class="media-caption">
+            <div>
+              <div class="title">Header-Bild (Platzhalter)</div>
+              <div class="sub">Platzhalter-Bild: Wappen/Service.</div>
+            </div>
+            <div class="chip">Service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid3">
+      <a class="card feature" href="impressum.html"><h3>Impressum</h3><p>Entwurf – vor Go-Live prüfen.</p></a>
+      <a class="card feature" href="datenschutz.html"><h3>Datenschutz</h3><p>Platzhalter – rechtlich ausarbeiten.</p></a>
+      <a class="card feature" href="barrierefreiheit.html"><h3>Barrierefreiheit</h3><p>Platzhalter – Erklärung/Status.</p></a>
+      <a class="card feature" href="organisation.html"><h3>Organisation</h3><p>Struktur & Einheiten.</p></a>
+      <a class="card feature" href="information.html"><h3>Information</h3><p>Brandschutztipps & Downloads.</p></a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">FREIWILLIGE FEUERWEHR WEIL DER STADT</div>
+        <div class="footer-sub">Freiwillig · Ehrenamtlich · 24/7 einsatzbereit</div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-heading">Schnellzugriff</div>
+          <a href="einsaetze.html">Einsätze</a>
+          <a href="fahrzeuge.html">Fahrzeuge</a>
+          <a href="organisation.html">Organisation</a>
+          <a href="information.html">Information</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-heading">Kontakt</div>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="mitmachen.html">Mitmachen</a>
+          <a href="service.html">Impressum & Service</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-heading">Rechtliches</div>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="barrierefreiheit.html">Barrierefreiheit</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="muted small">© <span data-year></span> Feuerwehr Weil der Stadt</div>
+      <div class="muted small">Notruf: <b>112</b></div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" data-toast>
+  <div class="toast-inner">
+    <div class="toast-title" data-toast-title>Info</div>
+    <div class="toast-text" data-toast-text></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

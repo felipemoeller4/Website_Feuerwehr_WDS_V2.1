@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <title>Kontakt · Feuerwehr Weil der Stadt (Entwurf)</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07090c" />
+  <meta name="description" content="Kontaktseite – Notruf-Hinweis + Anfrageformular (mailto-Platzhalter)." />
+  <link rel="icon" href="assets/Stauferlöwe.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="Feuerwehr Weil der Stadt Startseite">
+      <img src="assets/Stauferlöwe.jpg" alt="Feuerwehr Weil der Stadt Logo" class="brand-logo" />
+      <span class="brand-name">FREIWILLIGE FEUERWEHR WEIL DER STADT</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" data-nav>
+      <a href="organisation.html">Organisation</a>
+      <a href="einsaetze.html">Einsätze</a>
+      <a href="fahrzeuge.html">Fahrzeuge</a>
+      <a href="information.html">Information</a>
+      <a href="intern.html">Intern</a>
+      <a href="mitmachen.html" class="pill">Mitmachen</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="card hero-card">
+        <div class="kicker">Kontakt <span class="muted2">— schnell & klar</span></div>
+        <h1 class="h1">Fragen?<br/>Wir sind erreichbar.</h1>
+        <p class="lead">Für Notfälle immer <b>112</b>. Für alles andere: Nachricht, Anfrage oder Hinweis. Formular als Platzhalter per E-Mail.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#formular">Nachricht senden</a>
+          <a class="btn" href="service.html">Service</a>
+          <a class="btn" href="impressum.html">Impressum</a>
+        </div>
+      </div>
+
+      <div class="card media-card">
+        <div class="media-frame" role="img" aria-label="Header Bild Platzhalter">
+          <div class="media-caption">
+            <div>
+              <div class="title">Header-Bild (Platzhalter)</div>
+              <div class="sub">Platzhalter-Bild: Karte/Gerätehaus.</div>
+            </div>
+            <div class="chip">Kontakt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="card panel">
+        <h2 class="h2">Kontaktinfos (Entwurf)</h2>
+        <p class="section-note">Daten bitte vor Veröffentlichung prüfen.</p>
+        <div class="list">
+          <div class="list-item"><b>Anschrift</b><span>Grabenstraße 1 · 71263 Weil der Stadt</span></div>
+          <div class="list-item"><b>Telefon</b><span>+49 (0) 7033 521-4600</span></div>
+          <div class="list-item"><b>Fax</b><span>+49 (0) 7033 521-4609</span></div>
+          <div class="list-item"><b>E-Mail</b><span>info@feuerwehr-weilderstadt.de (Platzhalter)</span></div>
+        </div>
+      </div>
+
+      <div class="card panel" id="formular">
+        <h2 class="h2">Nachricht</h2>
+        <p class="section-note">Öffnet deinen E-Mail-Client mit den Angaben.</p>
+
+        <form class="form" data-mailto-form data-mailto-to="info@feuerwehr-weilderstadt.de" data-mailto-subject="Kontakt – Feuerwehr Weil der Stadt">
+          <div class="form-row">
+            <div class="field">
+              <label for="kname">Name</label>
+              <input id="kname" name="Name" placeholder="Max Mustermann" required />
+            </div>
+            <div class="field">
+              <label for="kmail">E-Mail</label>
+              <input id="kmail" name="E-Mail" type="email" placeholder="max@mail.de" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="kthema">Thema</label>
+            <select id="kthema" name="Thema">
+              <option>Allgemeine Anfrage</option>
+              <option>Mitmachen</option>
+              <option>Presse / Medien</option>
+              <option>Hinweis / Feedback</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="kmsg">Nachricht</label>
+            <textarea id="kmsg" name="Nachricht" placeholder="Deine Nachricht…"></textarea>
+          </div>
+
+          <button class="btn primary" type="submit">E-Mail vorbereiten</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">FREIWILLIGE FEUERWEHR WEIL DER STADT</div>
+        <div class="footer-sub">Freiwillig · Ehrenamtlich · 24/7 einsatzbereit</div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-heading">Schnellzugriff</div>
+          <a href="einsaetze.html">Einsätze</a>
+          <a href="fahrzeuge.html">Fahrzeuge</a>
+          <a href="organisation.html">Organisation</a>
+          <a href="information.html">Information</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-heading">Kontakt</div>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="mitmachen.html">Mitmachen</a>
+          <a href="service.html">Impressum & Service</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-heading">Rechtliches</div>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="barrierefreiheit.html">Barrierefreiheit</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="muted small">© <span data-year></span> Feuerwehr Weil der Stadt</div>
+      <div class="muted small">Notruf: <b>112</b></div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" data-toast>
+  <div class="toast-inner">
+    <div class="toast-title" data-toast-title>Info</div>
+    <div class="toast-text" data-toast-text></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
