@@ -173,13 +173,15 @@
       let i = 0;
       const next = () => {
         if(i >= candidates.length) return;
-        const url = candidates[i++];
-        const img = new Image();
-        img.onload = () => {
-          el.style.setProperty('--hero-image', `url('${url}')`);
-        };
-        img.onerror = next;
-        img.src = url;
+        const rel = candidates[i++];
+const abs = new URL(rel, document.baseURI).toString();
+
+const img = new Image();
+img.onload = () => {
+  el.style.setProperty('--hero-image', `url("${abs}")`);
+};
+img.onerror = next;
+img.src = abs;
       };
       next();
     }
