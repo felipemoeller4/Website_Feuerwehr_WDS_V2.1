@@ -149,63 +149,56 @@
   bindTiles();
   initYearFilter();
 
-  // Auto hero image for pages with a .media-frame but without a configured header image.
-  // Convention: place an image named assets/header-<pagename>.(jpg|jpeg|png)
-  // Example: abteilung-hausen.html -> assets/header-abteilung-hausen.jpeg
+  // ===== Auto Hero Image (robust + smooth via CSS crossfade) =====
   function applyAutoHeroImages(){
     const frames = document.querySelectorAll('.media-frame');
     if(!frames.length) return;
 
-    const raw = (location.pathname.split('/').pop() || 'index.html');
-    const page = raw.split('?')[0].split('#')[0];
-    const base = (page.replace(/\.html$/i,'') || 'index').toLowerCase();
+    // "clean URL" / "pretty URL" friendly:
+    // /organisation-abteilungen  -> base = organisation-abteilungen
+    // /abteilung-hausen.html     -> base = abteilung-hausen
+    let raw = (location.pathname.split('/').pop() || 'index');
+    raw = raw.split('?')[0].split('#')[0];
+    const base = (raw.replace(/\.html?$/i, '') || 'index').toLowerCase();
 
+    // Nur im /assets/ Ordner (absolut, damit Pages/IONOS/Unterpfade sicher sind)
     const defaultCandidates = [
-      `assets/header-${base}.jpg`,
-      `assets/header-${base}.jpeg`,
-      `assets/header-${base}.png`,
-      `assets/${base}.jpg`,
-      `assets/${base}.jpeg`,
-      `assets/${base}.png`
+      `/assets/header-${base}.jpeg`,
+      `/assets/header-${base}.jpg`,
+      `/assets/header-${base}.png`
     ];
 
     function trySet(el, candidates){
       let i = 0;
       const next = () => {
-        if(i >= candidates.length) return;
-        const rel = candidates[i++];
-const abs = new URL(rel, document.baseURI).toString();
+        if(i >= candidates.length) return; // wenn nix gefunden: Default bleibt (CSS)
 
-const img = new Image();
-img.onload = () => {
-  el.style.setProperty('--hero-image', `url("${abs}")`);
-  el.classList.add("hero-ready");
-};
-img.onerror = next;
-img.src = abs;
+        const rel = candidates[i++];
+        const abs = new URL(rel, document.baseURI).toString();
+
+        const img = new Image();
+        img.onload = () => {
+          // Setzt das Overlay-Bild (CSS ::before blendet weich ein)
+          el.style.setProperty('--hero-image', `url("${abs}")`);
+          el.classList.add('hero-ready');
+        };
+        img.onerror = next;
+        img.src = abs;
       };
       next();
     }
 
     frames.forEach(el => {
-const current = getComputedStyle(el).getPropertyValue('--hero-image').trim();
-if(current && current !== 'none'){
-  // Default ist gesetzt -> sofort einblenden
-  el.classList.add("hero-ready");
-  // trotzdem versuchen, ein seiten-spezifisches Bild zu laden
-}
-  const custom = el.getAttribute('data-hero');
-  const candidates = custom ? [custom] : defaultCandidates;
-  trySet(el, candidates);
-      
-  setTimeout(() => {
-    if(!el.classList.contains("hero-ready")){
-      el.classList.add("hero-ready");
-    }
-  }, 150);
-});
+      // optional pro Element manuell überschreibbar
+      const custom = el.getAttribute('data-hero');
+      const candidates = custom
+        ? [new URL(custom, document.baseURI).toString()]
+        : defaultCandidates;
+
+      trySet(el, candidates);
+      // KEIN timeout nötig: Default ist sofort da; hero-ready kommt nur wenn ein echtes Bild geladen wurde.
+    });
   }
+
   applyAutoHeroImages();
-
-
 })();
