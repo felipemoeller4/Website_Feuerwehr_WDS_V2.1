@@ -146,9 +146,11 @@ img{max-width:100%; display:block}
   min-height:340px;
 
   background-image: url("/assets/header-default.jpeg"); /
-  background-size: cover;
+  background-size: contain;
   background-position: center;
-
+  background-repeat: no-repeat;
+  background-color: #ffffff; /* sauberer Hintergrund fürs Logo */
+  
   --hero-image: none;
 
   position: relative;
