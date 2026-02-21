@@ -179,6 +179,7 @@ const abs = new URL(rel, document.baseURI).toString();
 const img = new Image();
 img.onload = () => {
   el.style.setProperty('--hero-image', `url("${abs}")`);
+  el.classList.add("hero-ready");
 };
 img.onerror = next;
 img.src = abs;
@@ -187,13 +188,19 @@ img.src = abs;
     }
 
     frames.forEach(el => {
-      const current = getComputedStyle(el).getPropertyValue('--hero-image').trim();
-      if(current && current !== 'none') return;
+  const current = getComputedStyle(el).getPropertyValue('--hero-image').trim();
+  if(current && current !== 'none') return;
 
-      const custom = el.getAttribute('data-hero');
-      const candidates = custom ? [custom] : defaultCandidates;
-      trySet(el, candidates);
-    });
+  const custom = el.getAttribute('data-hero');
+  const candidates = custom ? [custom] : defaultCandidates;
+  trySet(el, candidates);
+      
+  setTimeout(() => {
+    if(!el.classList.contains("hero-ready")){
+      el.classList.add("hero-ready");
+    }
+  }, 150);
+});
   }
   applyAutoHeroImages();
 
