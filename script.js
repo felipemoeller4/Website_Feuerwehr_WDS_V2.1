@@ -158,7 +158,7 @@
 
     const raw = (location.pathname.split('/').pop() || 'index.html');
     const page = raw.split('?')[0].split('#')[0];
-    const base = page.replace(/\.html$/i,'') || 'index';
+    const base = (page.replace(/\.html$/i,'') || 'index').toLowerCase();
 
     const defaultCandidates = [
       `assets/header-${base}.jpg`,
@@ -188,9 +188,12 @@ img.src = abs;
     }
 
     frames.forEach(el => {
-  const current = getComputedStyle(el).getPropertyValue('--hero-image').trim();
-  if(current && current !== 'none') return;
-
+const current = getComputedStyle(el).getPropertyValue('--hero-image').trim();
+if(current && current !== 'none'){
+  // Default ist gesetzt -> sofort einblenden
+  el.classList.add("hero-ready");
+  // trotzdem versuchen, ein seiten-spezifisches Bild zu laden
+}
   const custom = el.getAttribute('data-hero');
   const candidates = custom ? [custom] : defaultCandidates;
   trySet(el, candidates);
