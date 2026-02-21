@@ -145,7 +145,7 @@ img{max-width:100%; display:block}
   height:100%;
   min-height:340px;
 
-  background-image: url("/assets/header-default.jpg"); /* oder .jpeg */
+  background-image: url("/assets/header-default.jpeg"); /
   background-size: cover;
   background-position: center;
 
