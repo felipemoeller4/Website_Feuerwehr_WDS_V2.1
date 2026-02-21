@@ -141,17 +141,14 @@ img{max-width:100%; display:block}
 
 .media-card{overflow:hidden; position:relative}
 
-/* ✅ CROSSFADE HERO (Default sofort + echtes Bild blendet weich drüber) */
 .media-frame{
   height:100%;
   min-height:340px;
 
-  /* Default immer vorhanden (ABSOLUTER PFAD!) */
-  background-image: url("/assets/header-default.jpeg");
+  background-image: url("/assets/header-default.jpg"); /* oder .jpeg */
   background-size: cover;
   background-position: center;
 
-  /* Overlay wird per JS in --hero-image gesetzt */
   --hero-image: none;
 
   position: relative;
@@ -160,9 +157,12 @@ img{max-width:100%; display:block}
   display:flex;
   align-items:flex-end;
   padding:18px;
+
+  /* GPU Hint */
+  transform: translateZ(0);
 }
 
-/* Overlay-Layer */
+/* Overlay */
 .media-frame::before{
   content:"";
   position:absolute;
@@ -173,19 +173,41 @@ img{max-width:100%; display:block}
   background-position: center;
 
   opacity: 0;
-  transition: opacity .45s ease;
+  transform: scale(1.03);              /* Mini-Zoom */
+  filter: saturate(1.02) contrast(1.02); /* ganz leicht „Premium“ */
+
+  transition:
+    opacity .55s cubic-bezier(.22,.61,.36,1),
+    transform .85s cubic-bezier(.22,.61,.36,1);
+
+  will-change: opacity, transform;
 }
 
-/* wenn geladen -> Overlay einblenden */
+/* wenn Bild da -> weich rein + Zoom zurück */
 .media-frame.hero-ready::before{
   opacity: 1;
+  transform: scale(1);
 }
 
-/* wenn Nutzer reduzierte Animation will */
+/* Caption über dem Bild */
+.media-caption{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:14px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Motion reduzieren, wenn Nutzer das will */
 @media (prefers-reduced-motion: reduce){
-  .media-frame::before{ transition:none; }
+  .media-frame::before{
+    transition:none;
+    transform:none;
+    filter:none;
+  }
 }
-
 /* Caption über dem Bild */
 .media-caption{
   width:100%;
