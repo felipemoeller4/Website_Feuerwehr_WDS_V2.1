@@ -1,7 +1,7 @@
 :root{
-  --accent:#b30000;      /* Feuerwehr-Rot (Banner) */
-  --accent2:#e10600;     /* Einsatz-Rot */
-  --accent3:#ffb020;     /* Warn-Orange */
+  --accent:#b30000;
+  --accent2:#e10600;
+  --accent3:#ffb020;
 
   --bg:#f3f3f3;
   --panel:#ffffff;
@@ -15,7 +15,6 @@
   --radius2: 22px;
   --max: 1100px;
 }
-
 
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -55,11 +54,11 @@ img{max-width:100%; display:block}
   border-right: 1px solid rgba(255,255,255,.14);
   transition: background .2s ease, color .2s ease;
 }
-.nav-links a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
+.nav-links a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:50px;
 }
 .nav-links .pill{background: linear-gradient(135deg, #b30000, #e10600); color:#ffffff;}
 .nav-links .pill:hover{background: linear-gradient(135deg, #e10600, #ff3b3b)}
@@ -141,36 +140,61 @@ img{max-width:100%; display:block}
 }
 
 .media-card{overflow:hidden; position:relative}
+
+/* ✅ CROSSFADE HERO (Default sofort + echtes Bild blendet weich drüber) */
 .media-frame{
   height:100%;
   min-height:340px;
 
-  /* Standardbild (immer vorhanden) */
-  --hero-image: url("assets/header-default.jpeg");
+  /* Default immer vorhanden (ABSOLUTER PFAD!) */
+  background-image: url("/assets/header-default.jpeg");
+  background-size: cover;
+  background-position: center;
+
+  /* Overlay wird per JS in --hero-image gesetzt */
+  --hero-image: none;
+
+  position: relative;
+  overflow: hidden;
+
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+}
+
+/* Overlay-Layer */
+.media-frame::before{
+  content:"";
+  position:absolute;
+  inset:0;
 
   background-image: var(--hero-image);
   background-size: cover;
   background-position: center;
 
-  display:flex;
-  align-items:flex-end;
-  padding:18px;
-
-  /* Smooth Einblenden */
   opacity: 0;
-  transition: opacity .35s ease;
+  transition: opacity .45s ease;
 }
 
-/* Wird aktiviert sobald Bild bereit ist */
-.media-frame.hero-ready{
+/* wenn geladen -> Overlay einblenden */
+.media-frame.hero-ready::before{
   opacity: 1;
 }
+
+/* wenn Nutzer reduzierte Animation will */
+@media (prefers-reduced-motion: reduce){
+  .media-frame::before{ transition:none; }
+}
+
+/* Caption über dem Bild */
 .media-caption{
   width:100%;
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
   gap:14px;
+  position: relative;
+  z-index: 1;
 }
 .media-caption .title{font-weight:800; letter-spacing:-.02em}
 .media-caption .sub{color:var(--muted); font-size:13px; margin-top:4px}
@@ -258,14 +282,8 @@ img{max-width:100%; display:block}
 .tile .meta .t{font-weight:800}
 .tile .meta .s{color:var(--muted); font-size:13px; margin-top:4px}
 
-.form{
-  display:grid;
-  gap:12px;
-}
-.field{
-  display:grid;
-  gap:6px;
-}
+.form{display:grid; gap:12px}
+.field{display:grid; gap:6px}
 label{font-size:13px; color:var(--muted); font-weight:700}
 input, select, textarea{
   width:100%;
@@ -279,11 +297,7 @@ input, select, textarea{
 }
 textarea{min-height:120px; resize:vertical}
 input:focus, select:focus, textarea:focus{border-color: rgba(225,6,0,.55)}
-.form-row{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:12px;
-}
+.form-row{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
 
 .notice{
   padding:14px 16px;
@@ -373,11 +387,9 @@ input:focus, select:focus, textarea:focus{border-color: rgba(225,6,0,.55)}
   aspect-ratio: 16/9;
   border-radius: 18px;
   border:1px solid var(--line);
-
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-
   display:grid;
   place-items:center;
 }
@@ -409,60 +421,44 @@ input:focus, select:focus, textarea:focus{border-color: rgba(225,6,0,.55)}
   .h1{font-size:36px}
   .form-row{grid-template-columns: 1fr}
 }
-/* Jahresfilter bei Einsätzen*/
-.year-filter {
-  display: flex;
-  gap: 10px;
-  margin: 14px 0 24px;
-}
 
-.year-pill {
-  border: 1px solid rgba(0,0,0,0.12);
-  background: #fff;
-  color: #111;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
+/* Jahresfilter bei Einsätzen*/
+.year-filter{
+  display:flex;
+  gap:10px;
+  margin:14px 0 24px;
+}
+.year-pill{
+  border:1px solid rgba(0,0,0,0.12);
+  background:#fff;
+  color:#111;
+  padding:8px 16px;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
   transition: all .2s ease;
 }
-
-.year-pill:hover {
-  background: rgba(0,0,0,0.04);
-}
-
-.year-pill.active {
+.year-pill:hover{background: rgba(0,0,0,0.04)}
+.year-pill.active{
   background: linear-gradient(135deg, #b30000, #e10600);
-  color: #fff;
+  color:#fff;
   border-color: transparent;
   box-shadow: 0 6px 18px rgba(179,0,0,0.35);
 }
-/* Einsätze: Grid (3 Kacheln nebeneinander) */
+
+/* Einsätze: Grid */
 .einsatz-grid{
-  display: grid;
+  display:grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap:12px;
 }
-
-/* Tablet */
 @media (max-width: 920px){
-  .einsatz-grid{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .einsatz-grid{grid-template-columns: repeat(2, minmax(0, 1fr));}
 }
-
-/* Handy */
 @media (max-width: 600px){
-  .einsatz-grid{
-    grid-template-columns: 1fr;
-  }
+  .einsatz-grid{grid-template-columns: 1fr;}
 }
-
-/* Kacheln kompakter (weniger „Riesig“) */
-.einsatz-grid .tile .ph{
-  aspect-ratio: 16/9;
-}
-/* FIX: Tiles in einsatz-grid dürfen NICHT span 4/6 übernehmen */
+.einsatz-grid .tile .ph{aspect-ratio: 16/9;}
 .einsatz-grid .tile{
   grid-column: auto !important;
   width: auto !important;
