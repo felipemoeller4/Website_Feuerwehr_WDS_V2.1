@@ -179,8 +179,14 @@
         const img = new Image();
         img.onload = () => {
           // Setzt das Overlay-Bild (CSS ::before blendet weich ein)
-          el.style.setProperty('--hero-image', `url("${abs}")`);
-          el.classList.add('hero-ready');
+el.style.setProperty('--hero-image', `url("${abs}")`);
+
+// 2 Frames warten -> Browser rendert sicher background-image
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    el.classList.add('hero-ready');
+  });
+});
         };
         img.onerror = next;
         img.src = abs;
