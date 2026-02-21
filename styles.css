@@ -145,12 +145,6 @@ img{max-width:100%; display:block}
   height:100%;
   min-height:340px;
 
-  background-image: url("/assets/header-default.jpeg"); /
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #ffffff; /* sauberer Hintergrund fürs Logo */
-  
   --hero-image: none;
 
   position: relative;
@@ -160,29 +154,56 @@ img{max-width:100%; display:block}
   align-items:flex-end;
   padding:18px;
 
-  /* GPU Hint */
+  background: #ffffff; /* Hintergrund */
+
   transform: translateZ(0);
 }
 
-/* Overlay */
+/* Default-Logo (immer komplett sichtbar) */
+.media-frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background-image: url("/assets/header-default.jpeg"); /* oder .jpg */
+  background-size: contain;      /* ✅ komplett anzeigen */
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 0;
+}
+
+/* Seitenbild Overlay */
 .media-frame::before{
   content:"";
   position:absolute;
   inset:0;
 
   background-image: var(--hero-image);
-  background-size: cover;
+  background-size: cover;        /* Fotos vollflächig */
   background-position: center;
 
   opacity: 0;
-  transform: scale(1.03);              /* Mini-Zoom */
-  filter: saturate(1.02) contrast(1.02); /* ganz leicht „Premium“ */
+  transform: scale(1.03);
+  filter: saturate(1.02) contrast(1.02);
 
   transition:
     opacity .55s cubic-bezier(.22,.61,.36,1),
     transform .85s cubic-bezier(.22,.61,.36,1);
 
   will-change: opacity, transform;
+  z-index: 1;
+}
+
+.media-frame.hero-ready::before{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Caption immer ganz vorne */
+.media-caption{
+  position: relative;
+  z-index: 2;
 }
 
 /* wenn Bild da -> weich rein + Zoom zurück */
